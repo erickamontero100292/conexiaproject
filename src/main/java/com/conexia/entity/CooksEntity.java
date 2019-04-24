@@ -1,23 +1,26 @@
 package com.conexia.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "cooks", schema = "conexia", catalog = "")
+@Table(name = "cooks", schema = "conexia")
 public class CooksEntity {
-    private int idcooks;
+    private Long idcooks;
     private String name;
     private String surname;
     private String lastname;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcooks")
-    public int getIdcooks() {
+    public Long getIdcooks() {
         return idcooks;
     }
 
-    public void setIdcooks(int idcooks) {
+    public void setIdcooks(Long idcooks) {
         this.idcooks = idcooks;
     }
 
