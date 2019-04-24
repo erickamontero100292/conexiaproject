@@ -1,9 +1,11 @@
 package com.conexia;
 
 import com.conexia.dao.impl.CooksDAOImpl;
+import com.conexia.dao.impl.CustomersDAOImpl;
 import com.conexia.dao.impl.TablesDAOImpl;
 import com.conexia.dao.impl.WaitersDAOImpl;
 import com.conexia.entity.CooksEntity;
+import com.conexia.entity.CustomersEntity;
 import com.conexia.entity.TablesEntity;
 import com.conexia.entity.WaitersEntity;
 import org.junit.Test;
@@ -28,6 +30,8 @@ public class ConexiaApplicationTests {
     WaitersDAOImpl waitersDAO;
     @Autowired
     TablesDAOImpl tablesDAO;
+    @Autowired
+    CustomersDAOImpl customersDAO;
 
 
     @Test
@@ -40,10 +44,15 @@ public class ConexiaApplicationTests {
         testDeletetWaiters();*/
 //        testUpdatetWaiters();
 
-        testInsertMassivetTables();
+   /*     testInsertMassivetTables();
         testSelectAlltTables();
         testDeletetTables();
-        testUpdatetTables();
+        testUpdatetTables();*/
+
+        testInsertMassivetCustomers();
+        testSelectAlltCustomers();
+        testDeletetCustomers();
+        testUpdatetCustomers();
 
     }
 
@@ -154,4 +163,38 @@ public class ConexiaApplicationTests {
         tablesEntity.setMaxdiners(10);
         tablesDAO.update(tablesEntity);
     }
+
+    private void testInsertMassivetCustomers() {
+        Random rand = new Random();
+
+        for (int i = 0; i < 10; i++) {
+            int n = rand.nextInt(3);
+            CustomersEntity customersEntity = new CustomersEntity();
+            customersEntity.setName(names[n]);
+            customersEntity.setLastname(surnames[n]);
+            customersEntity.setSurname(surnames[n]);
+            customersDAO.insert(customersEntity);
+        }
+    }
+
+    private void testDeletetCustomers() {
+        CustomersEntity customersEntity = customersDAO.selecyById(1L);
+        customersDAO.delete(customersEntity);
+    }
+
+    private void testSelectAlltCustomers() {
+        List<CustomersEntity> customersEntities = customersDAO.selectAll();
+        Iterator iterator = customersEntities.iterator();
+        while (iterator.hasNext()) {
+            CustomersEntity customersEntity = (CustomersEntity) iterator.next();
+            System.out.println(customersEntity.getName());
+        }
+    }
+
+    private void testUpdatetCustomers() {
+        CustomersEntity customersEntity = customersDAO.selecyById(2L);
+        customersEntity.setName("Pablo");
+        customersDAO.update(customersEntity);
+    }
 }
+
