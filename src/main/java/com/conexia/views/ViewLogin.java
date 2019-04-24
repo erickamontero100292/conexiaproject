@@ -1,7 +1,6 @@
 package com.conexia.views;
 
 
-import com.conexia.controller.ControllerUser;
 import com.conexia.enums.EnumMessages;
 import com.conexia.navigator.UniverseNavigator;
 import com.vaadin.annotations.Title;
@@ -25,8 +24,6 @@ public class ViewLogin extends UI implements View {
     @Autowired
     ApplicationContext applicationContext;
 
-    @Autowired
-    ControllerUser controllerUser;
 
     @Autowired
     private SpringViewProvider viewProvider;

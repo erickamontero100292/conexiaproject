@@ -1,4 +1,4 @@
-package com.conexia.electronic;
+package com.conexia;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ElectronicApplicationTests {
+public class ConexiaApplicationTests {
 
     @Test
     public void contextLoads() {
