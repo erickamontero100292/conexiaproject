@@ -20,6 +20,7 @@ public class ConexiaApplicationTests {
     String[] names = {"Maria", "Pedro", "Juan"};
     String[] surnames = {"Montero", "Hernandez", "Martinez"};
     String[] location = {"NORTE", "SUR", "ESTE", "OESTE"};
+    String[] plates = {"PASTA", "PIZZA", "BURGER", "FISH", "CHICKEN", "SUSHI", "RICE", "SANDWICH"};
     @Autowired
     CooksDAOImpl cooksDAO;
     @Autowired
@@ -30,18 +31,22 @@ public class ConexiaApplicationTests {
     CustomersDAOImpl customersDAO;
     @Autowired
     InvoicesDAOImpl invoicesDAO;
+    @Autowired
+    DetailinvoicesDAOImpl detailinvoicesDAO;
 
     @Test
     public void contextLoads() {
-//        testInsertMassiveCook();
-//        testSelectAllCook();
-//        testDeleteCook();
+//            testInsertCook();
+        /*testInsertMassiveCook();
+        testSelectAllCook();
+        testDeleteCook();*/
+
         /*testInsertMassivetWaiters();
         testSelectAlltWaiters();
-        testDeletetWaiters();*/
-//        testUpdatetWaiters();
+        testDeletetWaiters();
+        testUpdatetWaiters();*/
 
-   /*     testInsertMassivetTables();
+   /*   testInsertMassivetTables();
         testSelectAlltTables();
         testDeletetTables();
         testUpdatetTables();*/
@@ -50,10 +55,15 @@ public class ConexiaApplicationTests {
         testSelectAlltCustomers();
         testDeletetCustomers();
         testUpdatetCustomers();*/
-//        testInsertMassivetInvoices();
+
+        /*testInsertMassivetInvoices();
         testSelectAlltInvoices();
         testDeletetInvoices();
-        testUpdatetInvoices();
+        testUpdatetInvoices();*/
+        testInsertMassivetDetailinvoices();
+        testSelectAlltDetailinvoices();
+        testDeletetDetailinvoices();
+        testUpdatetDetailinvoices();
 
     }
 
@@ -79,7 +89,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testDeleteCook() {
-        CooksEntity cooksEntity = cooksDAO.selecyById(1L);
+        CooksEntity cooksEntity = cooksDAO.selecyById(1);
         cooksDAO.delete(cooksEntity);
     }
 
@@ -114,7 +124,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testDeletetWaiters() {
-        WaitersEntity waitersEntity = waitersDAO.selecyById(1L);
+        WaitersEntity waitersEntity = waitersDAO.selecyById(1);
         waitersDAO.delete(waitersEntity);
     }
 
@@ -128,7 +138,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testUpdatetWaiters() {
-        WaitersEntity waitersEntity = waitersDAO.selecyById(2L);
+        WaitersEntity waitersEntity = waitersDAO.selecyById(2);
         waitersEntity.setName("Luis");
         waitersDAO.update(waitersEntity);
     }
@@ -146,7 +156,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testDeletetTables() {
-        TablesEntity tablesEntity = tablesDAO.selecyById(1L);
+        TablesEntity tablesEntity = tablesDAO.selecyById(1);
         tablesDAO.delete(tablesEntity);
     }
 
@@ -160,7 +170,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testUpdatetTables() {
-        TablesEntity tablesEntity = tablesDAO.selecyById(2L);
+        TablesEntity tablesEntity = tablesDAO.selecyById(2);
         tablesEntity.setMaxdiners(10);
         tablesDAO.update(tablesEntity);
     }
@@ -179,7 +189,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testDeletetCustomers() {
-        CustomersEntity customersEntity = customersDAO.selecyById(1L);
+        CustomersEntity customersEntity = customersDAO.selecyById(1);
         customersDAO.delete(customersEntity);
     }
 
@@ -193,17 +203,17 @@ public class ConexiaApplicationTests {
     }
 
     private void testUpdatetCustomers() {
-        CustomersEntity customersEntity = customersDAO.selecyById(2L);
+        CustomersEntity customersEntity = customersDAO.selecyById(2);
         customersEntity.setName("Pablo");
         customersDAO.update(customersEntity);
     }
 
     private void testInsertMassivetInvoices() {
         Random rand = new Random();
-        Date date = new Date(Calendar.getInstance().getTime().getTime() );
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
 
         for (int i = 0; i < 10; i++) {
-            long n =  (int) (Math.random() * ((5 - 3) + 1)) + 3;
+            int n = (int) (Math.random() * ((5 - 3) + 1)) + 3;
             InvoicesEntity invoicesEntity = new InvoicesEntity();
             CustomersEntity customersEntity = customersDAO.selecyById(n);
             WaitersEntity waitersEntity = waitersDAO.selecyById(n);
@@ -217,7 +227,7 @@ public class ConexiaApplicationTests {
     }
 
     private void testDeletetInvoices() {
-        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(1L);
+        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(1);
         invoicesDAO.delete(invoicesEntity);
     }
 
@@ -231,10 +241,46 @@ public class ConexiaApplicationTests {
     }
 
     private void testUpdatetInvoices() {
-        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(2L);
-        invoicesEntity.setIdtable(10l);
+        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(2);
+        invoicesEntity.setIdtable(10);
         invoicesDAO.update(invoicesEntity);
     }
 
+    private void testInsertMassivetDetailinvoices() {
+        Random rand = new Random();
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+
+        for (int i = 0; i < 10; i++) {
+            int n = (int) (Math.random() * ((5 - 3) + 1)) + 3;
+            DetailinvoicesEntity detailinvoicesEntity = new DetailinvoicesEntity();
+            InvoicesEntity invoicesEntity = invoicesDAO.selecyById( n);
+            CooksEntity cooksEntity = cooksDAO.selecyById( 4);
+            detailinvoicesEntity.setIdinvoice(invoicesEntity.getIdinvoice());
+            detailinvoicesEntity.setIdcook(cooksEntity.getIdcooks());
+            detailinvoicesEntity.setPlate(plates[n]);
+            detailinvoicesEntity.setImporte(2.5);
+            detailinvoicesDAO.insert(detailinvoicesEntity);
+        }
+    }
+
+    private void testDeletetDetailinvoices() {
+        DetailinvoicesEntity detailinvoicesEntity = detailinvoicesDAO.selecyById(1);
+        detailinvoicesDAO.delete(detailinvoicesEntity);
+    }
+
+    private void testSelectAlltDetailinvoices() {
+        List<DetailinvoicesEntity> invoicesEntities = detailinvoicesDAO.selectAll();
+        Iterator iterator = invoicesEntities.iterator();
+        while (iterator.hasNext()) {
+            DetailinvoicesEntity detailinvoicesEntity = (DetailinvoicesEntity) iterator.next();
+            System.out.println(detailinvoicesEntity.getIdinvoice());
+        }
+    }
+
+    private void testUpdatetDetailinvoices() {
+        DetailinvoicesEntity detailinvoicesEntity = detailinvoicesDAO.selecyById(2);
+        detailinvoicesEntity.setPlate("ICE CREAM");
+        detailinvoicesDAO.update(detailinvoicesEntity);
+    }
 }
 

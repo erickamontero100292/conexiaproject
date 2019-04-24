@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InvoicesDAO {
 
-    public InvoicesEntity  selecyById(Long idInvoice);
+    public InvoicesEntity  selecyById(Integer idInvoice);
 
     public List<InvoicesEntity> selectAll();
 

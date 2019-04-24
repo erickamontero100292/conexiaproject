@@ -7,50 +7,50 @@ import java.util.Objects;
 @Entity
 @Table(name = "invoices", schema = "conexia")
 public class InvoicesEntity {
-    private Long idinvoice;
-    private Long idcustomer;
-    private Long idwaiter;
-    private Long idtable;
+    private Integer idinvoice;
+    private Integer idcustomer;
+    private Integer idwaiter;
+    private Integer idtable;
     private Date invoicedate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idinvoice")
-    public Long getIdinvoice() {
+    public Integer getIdinvoice() {
         return idinvoice;
     }
 
-    public void setIdinvoice(Long idinvoice) {
+    public void setIdinvoice(Integer idinvoice) {
         this.idinvoice = idinvoice;
     }
 
     @Basic
     @Column(name = "idcustomer")
-    public Long getIdcustomer() {
+    public Integer getIdcustomer() {
         return idcustomer;
     }
 
-    public void setIdcustomer(Long idcustomer) {
+    public void setIdcustomer(Integer idcustomer) {
         this.idcustomer = idcustomer;
     }
 
     @Basic
     @Column(name = "idwaiter")
-    public Long getIdwaiter() {
+    public Integer getIdwaiter() {
         return idwaiter;
     }
 
-    public void setIdwaiter(Long idwaiter) {
+    public void setIdwaiter(Integer idwaiter) {
         this.idwaiter = idwaiter;
     }
 
     @Basic
     @Column(name = "idtable")
-    public Long getIdtable() {
+    public Integer getIdtable() {
         return idtable;
     }
 
-    public void setIdtable(Long idtable) {
+    public void setIdtable(Integer idtable) {
         this.idtable = idtable;
     }
 

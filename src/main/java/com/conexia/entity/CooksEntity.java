@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "cooks", schema = "conexia")
 public class CooksEntity {
-    private Long idcooks;
+    private Integer idcooks;
     private String name;
     private String surname;
     private String lastname;
@@ -16,11 +16,11 @@ public class CooksEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcooks")
-    public Long getIdcooks() {
+    public Integer getIdcooks() {
         return idcooks;
     }
 
-    public void setIdcooks(Long idcooks) {
+    public void setIdcooks(Integer idcooks) {
         this.idcooks = idcooks;
     }
 

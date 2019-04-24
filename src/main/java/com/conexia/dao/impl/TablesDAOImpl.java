@@ -17,7 +17,7 @@ public class TablesDAOImpl implements TablesDAO {
     EntityManager entityManager;
 
     @Override
-    public TablesEntity selecyById(Long idTable) {
+    public TablesEntity selecyById(Integer idTable) {
         TablesEntity tablesEntity = entityManager.find(TablesEntity.class, idTable);
         return tablesEntity;
     }

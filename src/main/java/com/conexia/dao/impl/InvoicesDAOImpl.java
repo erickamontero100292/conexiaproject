@@ -1,7 +1,6 @@
 package com.conexia.dao.impl;
 
 import com.conexia.dao.InvoicesDAO;
-import com.conexia.dao.WaitersDAO;
 import com.conexia.entity.InvoicesEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,7 @@ public class InvoicesDAOImpl implements InvoicesDAO {
     EntityManager entityManager;
 
     @Override
-    public InvoicesEntity selecyById(Long idInvoice) {
+    public InvoicesEntity selecyById(Integer idInvoice) {
         InvoicesEntity invoicesEntity = entityManager.find(InvoicesEntity.class, idInvoice);
         return invoicesEntity;
     }

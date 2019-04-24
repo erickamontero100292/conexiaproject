@@ -17,7 +17,7 @@ public class CooksDAOImpl implements CooksDAO {
     EntityManager entityManager;
 
     @Override
-    public CooksEntity selecyById(Long idCook) {
+    public CooksEntity selecyById(Integer idCook) {
         CooksEntity cooksEntity = entityManager.find(CooksEntity.class, idCook);
         return cooksEntity;
     }

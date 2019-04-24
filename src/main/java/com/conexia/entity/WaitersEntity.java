@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "waiters", schema = "conexia", catalog = "")
 public class WaitersEntity {
-    private Long idwaiter;
+    private Integer idwaiter;
     private String name;
     private String surname;
     private String lastname;
@@ -14,11 +14,11 @@ public class WaitersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idwaiter")
-    public Long getIdwaiter() {
+    public Integer getIdwaiter() {
         return idwaiter;
     }
 
-    public void setIdwaiter(Long idwaiter) {
+    public void setIdwaiter(Integer idwaiter) {
         this.idwaiter = idwaiter;
     }
 

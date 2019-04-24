@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "tables", schema = "conexia")
 public class TablesEntity {
-    private Long idtable;
+    private Integer idtable;
     private int maxdiners;
     private String location;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtable")
-    public Long getIdtable() {
+    public Integer getIdtable() {
         return idtable;
     }
 
-    public void setIdtable(Long idtable) {
+    public void setIdtable(Integer idtable) {
         this.idtable = idtable;
     }
 

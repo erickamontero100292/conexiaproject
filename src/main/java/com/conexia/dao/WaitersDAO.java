@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WaitersDAO {
 
-    public WaitersEntity  selecyById(Long idWaiters);
+    public WaitersEntity  selecyById(Integer idWaiters);
 
     public List<WaitersEntity> selectAll();
 

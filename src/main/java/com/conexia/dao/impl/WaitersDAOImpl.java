@@ -17,7 +17,7 @@ public class WaitersDAOImpl implements WaitersDAO {
     EntityManager entityManager;
 
     @Override
-    public WaitersEntity selecyById(Long idWaiter) {
+    public WaitersEntity selecyById(Integer idWaiter) {
         WaitersEntity waitersEntity = entityManager.find(WaitersEntity.class, idWaiter);
         return waitersEntity;
     }

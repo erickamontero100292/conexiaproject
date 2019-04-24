@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CustomersDAO {
 
-    public CustomersEntity  selecyById(Long idCustomer);
+    public CustomersEntity  selecyById(Integer idCustomer);
 
     public List<CustomersEntity> selectAll();
 

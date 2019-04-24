@@ -1,45 +1,47 @@
 package com.conexia.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "detailinvoices", schema = "conexia", catalog = "")
-@IdClass(DetailinvoicesEntityPK.class)
-public class DetailinvoicesEntity {
-    private int iddetailinvoices;
-    private int idinvoice;
-    private int idcook;
+@Table(name = "detailinvoices", schema = "conexia")
+
+public class DetailinvoicesEntity implements Serializable {
+    private Integer iddetailinvoices;
+    private Integer idinvoice;
+    private Integer idcook;
     private String plate;
     private double importe;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddetailinvoices")
-    public int getIddetailinvoices() {
+    public Integer getIddetailinvoices() {
         return iddetailinvoices;
     }
 
-    public void setIddetailinvoices(int iddetailinvoices) {
+    public void setIddetailinvoices(Integer iddetailinvoices) {
         this.iddetailinvoices = iddetailinvoices;
     }
 
-    @Id
+
     @Column(name = "idinvoice")
-    public int getIdinvoice() {
+    public Integer getIdinvoice() {
         return idinvoice;
     }
 
-    public void setIdinvoice(int idinvoice) {
+    public void setIdinvoice(Integer idinvoice) {
         this.idinvoice = idinvoice;
     }
 
     @Basic
     @Column(name = "idcook")
-    public int getIdcook() {
+    public Integer getIdcook() {
         return idcook;
     }
 
-    public void setIdcook(int idcook) {
+    public void setIdcook(Integer idcook) {
         this.idcook = idcook;
     }
 
@@ -76,7 +78,7 @@ public class DetailinvoicesEntity {
     }
 
     @Override
-    public int hashCode() {
+    public Integer hashCode() {
         return Objects.hash(iddetailinvoices, idinvoice, idcook, plate, importe);
     }
 }

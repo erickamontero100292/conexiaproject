@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "customers", schema = "conexia", catalog = "")
 public class CustomersEntity {
-    private Long idcustomer;
+    private Integer idcustomer;
     private String name;
     private String surname;
     private String lastname;
@@ -15,11 +15,11 @@ public class CustomersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcustomer")
-    public Long getIdcustomer() {
+    public Integer getIdcustomer() {
         return idcustomer;
     }
 
-    public void setIdcustomer(Long idcustomer) {
+    public void setIdcustomer(Integer idcustomer) {
         this.idcustomer = idcustomer;
     }
 

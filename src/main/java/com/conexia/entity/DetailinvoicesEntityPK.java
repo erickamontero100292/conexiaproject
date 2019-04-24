@@ -1,6 +1,8 @@
 package com.conexia.entity;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,6 +12,7 @@ public class DetailinvoicesEntityPK implements Serializable {
     private int idinvoice;
 
     @Column(name = "iddetailinvoices")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     public int getIddetailinvoices() {
         return iddetailinvoices;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CooksDAO {
 
-    public CooksEntity  selecyById(Long idCook);
+    public CooksEntity  selecyById(Integer idCook);
 
     public List<CooksEntity> selectAll();
 

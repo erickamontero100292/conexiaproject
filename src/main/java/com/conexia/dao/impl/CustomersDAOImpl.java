@@ -1,7 +1,6 @@
 package com.conexia.dao.impl;
 
 import com.conexia.dao.CustomersDAO;
-import com.conexia.dao.TablesDAO;
 import com.conexia.entity.CustomersEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,7 @@ public class CustomersDAOImpl implements CustomersDAO {
     EntityManager entityManager;
 
     @Override
-    public CustomersEntity selecyById(Long idCustomer) {
+    public CustomersEntity selecyById(Integer idCustomer) {
         CustomersEntity customersEntity = entityManager.find(CustomersEntity.class, idCustomer);
         return customersEntity;
     }
