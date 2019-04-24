@@ -1,19 +1,15 @@
 package com.conexia;
 
-import com.conexia.dao.impl.CooksDAOImpl;
-import com.conexia.dao.impl.CustomersDAOImpl;
-import com.conexia.dao.impl.TablesDAOImpl;
-import com.conexia.dao.impl.WaitersDAOImpl;
-import com.conexia.entity.CooksEntity;
-import com.conexia.entity.CustomersEntity;
-import com.conexia.entity.TablesEntity;
-import com.conexia.entity.WaitersEntity;
+import com.conexia.dao.impl.*;
+import com.conexia.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -32,7 +28,8 @@ public class ConexiaApplicationTests {
     TablesDAOImpl tablesDAO;
     @Autowired
     CustomersDAOImpl customersDAO;
-
+    @Autowired
+    InvoicesDAOImpl invoicesDAO;
 
     @Test
     public void contextLoads() {
@@ -49,10 +46,14 @@ public class ConexiaApplicationTests {
         testDeletetTables();
         testUpdatetTables();*/
 
-        testInsertMassivetCustomers();
+        /*testInsertMassivetCustomers();
         testSelectAlltCustomers();
         testDeletetCustomers();
-        testUpdatetCustomers();
+        testUpdatetCustomers();*/
+//        testInsertMassivetInvoices();
+        testSelectAlltInvoices();
+        testDeletetInvoices();
+        testUpdatetInvoices();
 
     }
 
@@ -196,5 +197,44 @@ public class ConexiaApplicationTests {
         customersEntity.setName("Pablo");
         customersDAO.update(customersEntity);
     }
+
+    private void testInsertMassivetInvoices() {
+        Random rand = new Random();
+        Date date = new Date(Calendar.getInstance().getTime().getTime() );
+
+        for (int i = 0; i < 10; i++) {
+            long n =  (int) (Math.random() * ((5 - 3) + 1)) + 3;
+            InvoicesEntity invoicesEntity = new InvoicesEntity();
+            CustomersEntity customersEntity = customersDAO.selecyById(n);
+            WaitersEntity waitersEntity = waitersDAO.selecyById(n);
+            TablesEntity tablesEntity = tablesDAO.selecyById(n);
+            invoicesEntity.setIdcustomer(customersEntity.getIdcustomer());
+            invoicesEntity.setIdwaiter(waitersEntity.getIdwaiter());
+            invoicesEntity.setIdtable(tablesEntity.getIdtable());
+            invoicesEntity.setInvoicedate(date);
+            invoicesDAO.insert(invoicesEntity);
+        }
+    }
+
+    private void testDeletetInvoices() {
+        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(1L);
+        invoicesDAO.delete(invoicesEntity);
+    }
+
+    private void testSelectAlltInvoices() {
+        List<InvoicesEntity> invoicesEntities = invoicesDAO.selectAll();
+        Iterator iterator = invoicesEntities.iterator();
+        while (iterator.hasNext()) {
+            InvoicesEntity invoicesEntity = (InvoicesEntity) iterator.next();
+            System.out.println(invoicesEntity.getIdinvoice());
+        }
+    }
+
+    private void testUpdatetInvoices() {
+        InvoicesEntity invoicesEntity = invoicesDAO.selecyById(2L);
+        invoicesEntity.setIdtable(10l);
+        invoicesDAO.update(invoicesEntity);
+    }
+
 }
 

@@ -5,51 +5,52 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "invoices", schema = "conexia", catalog = "")
+@Table(name = "invoices", schema = "conexia")
 public class InvoicesEntity {
-    private int idinvoice;
-    private int idcustomer;
-    private int idwaiter;
-    private int idtable;
+    private Long idinvoice;
+    private Long idcustomer;
+    private Long idwaiter;
+    private Long idtable;
     private Date invoicedate;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idinvoice")
-    public int getIdinvoice() {
+    public Long getIdinvoice() {
         return idinvoice;
     }
 
-    public void setIdinvoice(int idinvoice) {
+    public void setIdinvoice(Long idinvoice) {
         this.idinvoice = idinvoice;
     }
 
     @Basic
     @Column(name = "idcustomer")
-    public int getIdcustomer() {
+    public Long getIdcustomer() {
         return idcustomer;
     }
 
-    public void setIdcustomer(int idcustomer) {
+    public void setIdcustomer(Long idcustomer) {
         this.idcustomer = idcustomer;
     }
 
     @Basic
     @Column(name = "idwaiter")
-    public int getIdwaiter() {
+    public Long getIdwaiter() {
         return idwaiter;
     }
 
-    public void setIdwaiter(int idwaiter) {
+    public void setIdwaiter(Long idwaiter) {
         this.idwaiter = idwaiter;
     }
 
     @Basic
     @Column(name = "idtable")
-    public int getIdtable() {
+    public Long getIdtable() {
         return idtable;
     }
 
-    public void setIdtable(int idtable) {
+    public void setIdtable(Long idtable) {
         this.idtable = idtable;
     }
 
