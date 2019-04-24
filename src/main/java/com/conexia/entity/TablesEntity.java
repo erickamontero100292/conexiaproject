@@ -4,19 +4,20 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tables", schema = "conexia", catalog = "")
+@Table(name = "tables", schema = "conexia")
 public class TablesEntity {
-    private int idtable;
+    private Long idtable;
     private int maxdiners;
     private String location;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtable")
-    public int getIdtable() {
+    public Long getIdtable() {
         return idtable;
     }
 
-    public void setIdtable(int idtable) {
+    public void setIdtable(Long idtable) {
         this.idtable = idtable;
     }
 

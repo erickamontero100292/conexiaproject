@@ -1,8 +1,10 @@
 package com.conexia;
 
 import com.conexia.dao.impl.CooksDAOImpl;
+import com.conexia.dao.impl.TablesDAOImpl;
 import com.conexia.dao.impl.WaitersDAOImpl;
 import com.conexia.entity.CooksEntity;
+import com.conexia.entity.TablesEntity;
 import com.conexia.entity.WaitersEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +21,13 @@ import java.util.Random;
 public class ConexiaApplicationTests {
     String[] names = {"Maria", "Pedro", "Juan"};
     String[] surnames = {"Montero", "Hernandez", "Martinez"};
+    String[] location = {"NORTE", "SUR", "ESTE", "OESTE"};
     @Autowired
     CooksDAOImpl cooksDAO;
     @Autowired
     WaitersDAOImpl waitersDAO;
+    @Autowired
+    TablesDAOImpl tablesDAO;
 
 
     @Test
@@ -33,7 +38,12 @@ public class ConexiaApplicationTests {
         /*testInsertMassivetWaiters();
         testSelectAlltWaiters();
         testDeletetWaiters();*/
-        testUpdatetWaiters();
+//        testUpdatetWaiters();
+
+        testInsertMassivetTables();
+        testSelectAlltTables();
+        testDeletetTables();
+        testUpdatetTables();
 
     }
 
@@ -99,8 +109,8 @@ public class ConexiaApplicationTests {
     }
 
     private void testSelectAlltWaiters() {
-        List<WaitersEntity> cooksEntities = waitersDAO.selectAll();
-        Iterator iterator = cooksEntities.iterator();
+        List<WaitersEntity> waitersEntities = waitersDAO.selectAll();
+        Iterator iterator = waitersEntities.iterator();
         while (iterator.hasNext()) {
             WaitersEntity waitersEntity = (WaitersEntity) iterator.next();
             System.out.println(waitersEntity.getName());
@@ -111,5 +121,37 @@ public class ConexiaApplicationTests {
         WaitersEntity waitersEntity = waitersDAO.selecyById(2L);
         waitersEntity.setName("Luis");
         waitersDAO.update(waitersEntity);
+    }
+
+    private void testInsertMassivetTables() {
+        Random rand = new Random();
+
+        for (int i = 0; i < 10; i++) {
+            int n = rand.nextInt(4);
+            TablesEntity tablesEntity = new TablesEntity();
+            tablesEntity.setLocation(location[n]);
+            tablesEntity.setMaxdiners(4);
+            tablesDAO.insert(tablesEntity);
+        }
+    }
+
+    private void testDeletetTables() {
+        TablesEntity tablesEntity = tablesDAO.selecyById(1L);
+        tablesDAO.delete(tablesEntity);
+    }
+
+    private void testSelectAlltTables() {
+        List<TablesEntity> tablesEntities = tablesDAO.selectAll();
+        Iterator iterator = tablesEntities.iterator();
+        while (iterator.hasNext()) {
+            TablesEntity tablesEntity = (TablesEntity) iterator.next();
+            System.out.println(tablesEntity.getIdtable() + " - " + tablesEntity.getLocation());
+        }
+    }
+
+    private void testUpdatetTables() {
+        TablesEntity tablesEntity = tablesDAO.selecyById(2L);
+        tablesEntity.setMaxdiners(10);
+        tablesDAO.update(tablesEntity);
     }
 }

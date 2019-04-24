@@ -17,17 +17,17 @@ public class WaitersDAOImpl implements WaitersDAO {
     EntityManager entityManager;
 
     @Override
-    public WaitersEntity selecyById(Long idCook) {
-        WaitersEntity waitersEntity = entityManager.find(WaitersEntity.class, idCook);
+    public WaitersEntity selecyById(Long idWaiter) {
+        WaitersEntity waitersEntity = entityManager.find(WaitersEntity.class, idWaiter);
         return waitersEntity;
     }
 
     @Override
     public List<WaitersEntity> selectAll() {
         Query query = entityManager.createQuery("from WaitersEntity");
-        List<WaitersEntity> cooksEntities = new ArrayList<>();
-        cooksEntities = query.getResultList();
-        return cooksEntities;
+        List<WaitersEntity> waitersEntities = new ArrayList<>();
+        waitersEntities = query.getResultList();
+        return waitersEntities;
     }
 
     @Override
