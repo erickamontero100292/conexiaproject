@@ -6,18 +6,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "waiters", schema = "conexia", catalog = "")
 public class WaitersEntity {
-    private int idwaiter;
+    private Long idwaiter;
     private String name;
     private String surname;
     private String lastname;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idwaiter")
-    public int getIdwaiter() {
+    public Long getIdwaiter() {
         return idwaiter;
     }
 
-    public void setIdwaiter(int idwaiter) {
+    public void setIdwaiter(Long idwaiter) {
         this.idwaiter = idwaiter;
     }
 
