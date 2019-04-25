@@ -43,12 +43,20 @@ public class ViewMenu extends VerticalLayout implements View {
         MenuBar mainMenu = new MenuBar();
 
         // A top-level menu item that opens a submenu
-        MenuBar.MenuItem mantenimientoEventos = mainMenu.addItem("Mesas", null, null);
+        MenuBar.MenuItem tablesMaintenance = mainMenu.addItem("Mesas", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem registrarEventos = mantenimientoEventos.addItem("Mantenimiento de mesas", null, new MenuBar.Command() {
+        MenuBar.MenuItem menuItemTables = tablesMaintenance.addItem("Mantenimiento de mesas", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterTable.VIEW_NAME);
+            }
+        });
+        MenuBar.MenuItem cookMaintenance = mainMenu.addItem("Cocineros", null, null);
+        // Submenu item with a sub-submenu
+        MenuBar.MenuItem menuItemCooks = cookMaintenance.addItem("Mantenimiento de cocineros", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                UniverseNavigator.navigate(ViewRegisterCook.VIEW_NAME);
             }
         });
         return mainMenu;
