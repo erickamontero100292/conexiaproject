@@ -9,10 +9,12 @@ public enum EnumLabel {
     NUMBER_TABLE_LABEL("Numero de mesa"),
     NUMBER_COOK_LABEL("Numero de cocinero"),
     NUMBER_WAITER_LABEL("Numero de mesonero"),
+    NUMBER_CUSTOMER_LABEL("Numero de cliente"),
     MAX_COMENSALES_LABEL("Maximo de comensales"),
     NAME_LABEL ("Nombres"),
     SURNAME_LABEL ("Apellido"),
     LASTNAME_LABEL ("Apellido"),
+    OBSERVATION_LABEL ("Observaciones"),
     LOCATION_LABEL("Locacion");
 
     EnumLabel(String label) {
