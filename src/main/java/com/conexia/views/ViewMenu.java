@@ -23,7 +23,7 @@ public class ViewMenu extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         if (mainMenu == null) {
-//            mainMenu = buildMenu();
+            mainMenu = buildMenu();
             addComponent(mainMenu);
         } else {
             addComponent(mainMenu);
@@ -38,6 +38,20 @@ public class ViewMenu extends VerticalLayout implements View {
         image.setHeight("80%");
         addComponent(image);
         this.setComponentAlignment(mainMenu, Alignment.TOP_CENTER);
+    }
+    public static MenuBar buildMenu() {
+        MenuBar mainMenu = new MenuBar();
+
+        // A top-level menu item that opens a submenu
+        MenuBar.MenuItem mantenimientoEventos = mainMenu.addItem("Mesas", null, null);
+        // Submenu item with a sub-submenu
+        MenuBar.MenuItem registrarEventos = mantenimientoEventos.addItem("Mantenimiento de mesas", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                UniverseNavigator.navigate(ViewRegisterTable.VIEW_NAME);
+            }
+        });
+        return mainMenu;
     }
 
 

@@ -1,6 +1,7 @@
 package com.conexia.views;
 
 
+import com.conexia.controller.ControllerUser;
 import com.conexia.enums.EnumMessages;
 import com.conexia.navigator.UniverseNavigator;
 import com.vaadin.annotations.Title;
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 @SpringUI(path = ViewLogin.APP_ROOT)
-@Title("Agenda Electronica")
+@Title("La mejor cocina")
 @SpringView
 public class ViewLogin extends UI implements View {
     public static final String APP_ROOT = "/project";
@@ -24,6 +25,9 @@ public class ViewLogin extends UI implements View {
     @Autowired
     ApplicationContext applicationContext;
 
+
+    @Autowired
+    ControllerUser controllerUser;
 
     @Autowired
     private SpringViewProvider viewProvider;
@@ -77,9 +81,9 @@ public class ViewLogin extends UI implements View {
         btnEntrar.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-               /* if (controllerUser.validateLogin(txtUser.getValue(), txtPassword.getValue())){
+                if (controllerUser.validateLogin(txtUser.getValue(), txtPassword.getValue())) {
                     iniNavigator();
-                }*/
+                }
             }
         });
         btnEntrar.addStyleName(ValoTheme.BUTTON_PRIMARY);
