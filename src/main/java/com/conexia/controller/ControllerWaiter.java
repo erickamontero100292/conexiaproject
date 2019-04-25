@@ -14,7 +14,7 @@ public class ControllerWaiter {
     @Autowired
     WaitersDAOImpl waitersDAO;
 
-    public List<WaitersEntity> findAllTables() {
+    public List<WaitersEntity> findAllWaiter() {
         List<WaitersEntity> entityList = new ArrayList<>();
         entityList = waitersDAO.selectAll();
         return entityList;

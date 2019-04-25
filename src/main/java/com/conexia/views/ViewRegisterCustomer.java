@@ -116,11 +116,11 @@ public class ViewRegisterCustomer extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 if (action.equalsIgnoreCase("new")) {
-                    addInstitucion();
+                    addCustomer();
                 } else if (action.equalsIgnoreCase("edit")) {
                     updateFields();
                 } else if (action.equalsIgnoreCase("delete")) {
-                    deleteInstitucion();
+                    deleteCustomer();
                 }
                 clearFields();
                 clearAction();
@@ -134,7 +134,7 @@ public class ViewRegisterCustomer extends VerticalLayout implements View {
         rightLayout.addComponent(buttonsSecondaryLayout);
     }
 
-    private void deleteInstitucion() {
+    private void deleteCustomer() {
         controllerCustomer.delete(customerEntitySelect);
     }
 
@@ -147,7 +147,7 @@ public class ViewRegisterCustomer extends VerticalLayout implements View {
         controllerCustomer.update(customerEntitySelect);
     }
 
-    private void addInstitucion() {
+    private void addCustomer() {
         CustomersEntity entity = new CustomersEntity();
         entity.setSurname(surname.getValue());
         entity.setLastname(lastname.getValue());
@@ -258,8 +258,8 @@ public class ViewRegisterCustomer extends VerticalLayout implements View {
     }
 
     private void createGrid() {
-        List<CustomersEntity> collectionInstituciones = controllerCustomer.findAllTables();
-        dataProvider = DataProvider.ofCollection(collectionInstituciones);
+        List<CustomersEntity> collectionCustomer = controllerCustomer.findAllCustomer();
+        dataProvider = DataProvider.ofCollection(collectionCustomer);
 
         grid.setEnabled(true);
         grid.addColumn(CustomersEntity::getIdcustomer).setCaption(EnumLabel.NUMBER_CUSTOMER_LABEL.getLabel());
@@ -289,7 +289,7 @@ public class ViewRegisterCustomer extends VerticalLayout implements View {
     }
 
     private void refreshInformationGrid() {
-        collectionTables = controllerCustomer.findAllTables();
+        collectionTables = controllerCustomer.findAllCustomer();
         dataProvider = DataProvider.ofCollection(collectionTables);
         grid.setDataProvider(dataProvider);
 

@@ -15,7 +15,11 @@ public enum EnumLabel {
     SURNAME_LABEL ("Apellido"),
     LASTNAME_LABEL ("Apellido"),
     OBSERVATION_LABEL ("Observaciones"),
-    LOCATION_LABEL("Locacion");
+    LOCATION_LABEL("Locacion"),
+    WAITER_LABEL("Mesonero"),
+    CUSTOMER_LABEL("Cliente"),
+    INVOICE_LABEL("Factura"),
+    DATE_LABEL("Fecha");
 
     EnumLabel(String label) {
         this.label = label;

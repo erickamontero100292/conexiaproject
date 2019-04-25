@@ -15,7 +15,7 @@ public class ControllerCook {
     @Autowired
     CooksDAOImpl cooksDAO;
 
-    public List<CooksEntity> findAllTables() {
+    public List<CooksEntity> findAllCook() {
         List<CooksEntity> entityList = new ArrayList<>();
         entityList = cooksDAO.selectAll();
         return entityList;

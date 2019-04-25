@@ -14,7 +14,7 @@ public class ControllerCustomer {
     @Autowired
     CustomersDAOImpl customersDAO;
 
-    public List<CustomersEntity> findAllTables() {
+    public List<CustomersEntity> findAllCustomer() {
         List<CustomersEntity> entityList = new ArrayList<>();
         entityList = customersDAO.selectAll();
         return entityList;

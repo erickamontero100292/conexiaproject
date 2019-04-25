@@ -114,11 +114,11 @@ public class ViewRegisterWaiter extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 if (action.equalsIgnoreCase("new")) {
-                    addInstitucion();
+                    addWaiter();
                 } else if (action.equalsIgnoreCase("edit")) {
                     updateFields();
                 } else if (action.equalsIgnoreCase("delete")) {
-                    deleteInstitucion();
+                    deleteWaiter();
                 }
                 clearFields();
                 clearAction();
@@ -132,7 +132,7 @@ public class ViewRegisterWaiter extends VerticalLayout implements View {
         rightLayout.addComponent(buttonsSecondaryLayout);
     }
 
-    private void deleteInstitucion() {
+    private void deleteWaiter() {
         controllerWaiter.delete(waitersEntitySelect);
     }
 
@@ -144,7 +144,7 @@ public class ViewRegisterWaiter extends VerticalLayout implements View {
         controllerWaiter.update(waitersEntitySelect);
     }
 
-    private void addInstitucion() {
+    private void addWaiter() {
         WaitersEntity entity = new WaitersEntity();
         entity.setSurname(surname.getValue());
         entity.setLastname(lastname.getValue());
@@ -251,8 +251,8 @@ public class ViewRegisterWaiter extends VerticalLayout implements View {
     }
 
     private void createGrid() {
-        List<WaitersEntity> collectionInstituciones = controllerWaiter.findAllTables();
-        dataProvider = DataProvider.ofCollection(collectionInstituciones);
+        List<WaitersEntity> collectionWaiter = controllerWaiter.findAllWaiter();
+        dataProvider = DataProvider.ofCollection(collectionWaiter);
 
         grid.setEnabled(true);
         grid.addColumn(WaitersEntity::getIdwaiter).setCaption(EnumLabel.NUMBER_WAITER_LABEL.getLabel());
@@ -280,7 +280,7 @@ public class ViewRegisterWaiter extends VerticalLayout implements View {
     }
 
     private void refreshInformationGrid() {
-        collectionTables = controllerWaiter.findAllTables();
+        collectionTables = controllerWaiter.findAllWaiter();
         dataProvider = DataProvider.ofCollection(collectionTables);
         grid.setDataProvider(dataProvider);
 

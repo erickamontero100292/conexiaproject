@@ -114,11 +114,11 @@ public class ViewRegisterCook extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 if (action.equalsIgnoreCase("new")) {
-                    addInstitucion();
+                    addCook();
                 } else if (action.equalsIgnoreCase("edit")) {
                     updateFields();
                 } else if (action.equalsIgnoreCase("delete")) {
-                    deleteInstitucion();
+                    deleteCook();
                 }
                 clearFields();
                 clearAction();
@@ -132,7 +132,7 @@ public class ViewRegisterCook extends VerticalLayout implements View {
         rightLayout.addComponent(buttonsSecondaryLayout);
     }
 
-    private void deleteInstitucion() {
+    private void deleteCook() {
         controllerCook.delete(cooksEntitySelect);
     }
 
@@ -144,7 +144,7 @@ public class ViewRegisterCook extends VerticalLayout implements View {
         controllerCook.update(cooksEntitySelect);
     }
 
-    private void addInstitucion() {
+    private void addCook() {
         CooksEntity entity = new CooksEntity();
         entity.setSurname(surname.getValue());
         entity.setLastname(lastname.getValue());
@@ -251,8 +251,8 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     }
 
     private void createGrid() {
-        List<CooksEntity> collectionInstituciones = controllerCook.findAllTables();
-        dataProvider = DataProvider.ofCollection(collectionInstituciones);
+        List<CooksEntity> collectionCook = controllerCook.findAllCook();
+        dataProvider = DataProvider.ofCollection(collectionCook);
 
         grid.setEnabled(true);
         grid.addColumn(CooksEntity::getIdcooks).setCaption(EnumLabel.NUMBER_COOK_LABEL.getLabel());
@@ -267,8 +267,6 @@ public class ViewRegisterCook extends VerticalLayout implements View {
                 surname.setValue(cooksEntitySelect.getSurname());
                 lastname.setValue(cooksEntitySelect.getLastname());
                 name.setValue(cooksEntitySelect.getName());
-
-
             }
         });
     }
@@ -280,7 +278,7 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     }
 
     private void refreshInformationGrid() {
-        collectionTables = controllerCook.findAllTables();
+        collectionTables = controllerCook.findAllCook();
         dataProvider = DataProvider.ofCollection(collectionTables);
         grid.setDataProvider(dataProvider);
 

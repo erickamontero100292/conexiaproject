@@ -112,11 +112,11 @@ public class ViewRegisterTable extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 if (action.equalsIgnoreCase("new")) {
-                    addInstitucion();
+                    addTable();
                 } else if (action.equalsIgnoreCase("edit")) {
                     updateFields();
                 } else if (action.equalsIgnoreCase("delete")) {
-                    deleteInstitucion();
+                    deleteTable();
                 }
                 clearFields();
                 clearAction();
@@ -130,7 +130,7 @@ public class ViewRegisterTable extends VerticalLayout implements View {
         rightLayout.addComponent(buttonsSecondaryLayout);
     }
 
-    private void deleteInstitucion() {
+    private void deleteTable() {
         controllerTable.delete(tablesEntitySelect);
     }
 
@@ -141,7 +141,7 @@ public class ViewRegisterTable extends VerticalLayout implements View {
         controllerTable.update(tablesEntitySelect);
     }
 
-    private void addInstitucion() {
+    private void addTable() {
         TablesEntity entity = new TablesEntity();
         entity.setLocation(location.getValue());
         entity.setMaxdiners(Integer.valueOf(maxDinners.getValue()));
@@ -244,8 +244,8 @@ public class ViewRegisterTable extends VerticalLayout implements View {
     }
 
     private void createGrid() {
-        List<TablesEntity> collectionInstituciones = controllerTable.findAllTables();
-        dataProvider = DataProvider.ofCollection(collectionInstituciones);
+        List<TablesEntity> collectionTable = controllerTable.findAllTables();
+        dataProvider = DataProvider.ofCollection(collectionTable);
 
         grid.setEnabled(true);
         grid.addColumn(TablesEntity::getIdtable).setCaption(EnumLabel.NUMBER_TABLE_LABEL.getLabel());
