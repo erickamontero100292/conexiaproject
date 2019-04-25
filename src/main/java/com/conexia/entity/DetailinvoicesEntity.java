@@ -78,7 +78,7 @@ public class DetailinvoicesEntity implements Serializable {
     }
 
     @Override
-    public Integer hashCode() {
+    public int hashCode() {
         return Objects.hash(iddetailinvoices, idinvoice, idcook, plate, importe);
     }
 }
