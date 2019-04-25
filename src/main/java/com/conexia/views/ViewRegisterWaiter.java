@@ -1,8 +1,8 @@
 package com.conexia.views;
 
 
-import com.conexia.controller.ControllerCook;
-import com.conexia.entity.CooksEntity;
+import com.conexia.controller.ControllerWaiter;
+import com.conexia.entity.WaitersEntity;
 import com.conexia.enums.EnumLabel;
 import com.conexia.enums.EnumMessages;
 import com.vaadin.data.provider.DataProvider;
@@ -18,13 +18,13 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @UIScope
-@SpringView(name = ViewRegisterCook.VIEW_NAME)
-public class ViewRegisterCook extends VerticalLayout implements View {
+@SpringView(name = ViewRegisterWaiter.VIEW_NAME)
+public class ViewRegisterWaiter extends VerticalLayout implements View {
 
-    public static final String VIEW_NAME = "cooks";
+    public static final String VIEW_NAME = "waiters";
 
     @Autowired
-    ControllerCook controllerCook;
+    ControllerWaiter controllerWaiter;
     //fields
     private TextField name = new TextField(EnumLabel.NAME_LABEL.getLabel());
     private TextField surname = new TextField(EnumLabel.SURNAME_LABEL.getLabel());
@@ -41,18 +41,18 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     private VerticalLayout leftLayout = new VerticalLayout();
     private VerticalLayout rightLayout = new VerticalLayout();
     private HorizontalLayout principalLayout = new HorizontalLayout();
-    private Panel principalPanel = new Panel("Mantenimiento de cocineros");
+    private Panel principalPanel = new Panel("Mantenimiento de mesoneros");
     private HorizontalLayout buttonsSecondaryLayout = new HorizontalLayout();
     private HorizontalLayout menuLayout = new HorizontalLayout();
     private HorizontalLayout buttonsPrincipalLayout = new HorizontalLayout();
     private GridLayout fieldsLayout = new GridLayout(2, 5);
-    private ListDataProvider<CooksEntity> dataProvider;
-    private Grid<CooksEntity> grid = new Grid<>();
-    List<CooksEntity> collectionTables;
-    private CooksEntity cooksEntitySelect;
+    private ListDataProvider<WaitersEntity> dataProvider;
+    private Grid<WaitersEntity> grid = new Grid<>();
+    List<WaitersEntity> collectionTables;
+    private WaitersEntity waitersEntitySelect;
     private String action;
 
-    public ViewRegisterCook() {
+    public ViewRegisterWaiter() {
     }
 
     @PostConstruct
@@ -133,24 +133,24 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     }
 
     private void deleteInstitucion() {
-        controllerCook.delete(cooksEntitySelect);
+        controllerWaiter.delete(waitersEntitySelect);
     }
 
     private void updateFields() {
-        cooksEntitySelect.setName(name.getValue());
-        cooksEntitySelect.setSurname(surname.getValue());
-        cooksEntitySelect.setLastname(lastname.getValue());
+        waitersEntitySelect.setName(name.getValue());
+        waitersEntitySelect.setSurname(surname.getValue());
+        waitersEntitySelect.setLastname(lastname.getValue());
 
-        controllerCook.update(cooksEntitySelect);
+        controllerWaiter.update(waitersEntitySelect);
     }
 
     private void addInstitucion() {
-        CooksEntity entity = new CooksEntity();
+        WaitersEntity entity = new WaitersEntity();
         entity.setSurname(surname.getValue());
         entity.setLastname(lastname.getValue());
         entity.setName(name.getValue());
 
-        controllerCook.save(entity);
+        controllerWaiter.save(entity);
     }
 
     private void showFields(boolean value) {
@@ -251,22 +251,22 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     }
 
     private void createGrid() {
-        List<CooksEntity> collectionInstituciones = controllerCook.findAllTables();
+        List<WaitersEntity> collectionInstituciones = controllerWaiter.findAllTables();
         dataProvider = DataProvider.ofCollection(collectionInstituciones);
 
         grid.setEnabled(true);
-        grid.addColumn(CooksEntity::getIdcooks).setCaption(EnumLabel.NUMBER_COOK_LABEL.getLabel());
-        grid.addColumn(CooksEntity::getName).setCaption(EnumLabel.NAME_LABEL.getLabel());
-        grid.addColumn(CooksEntity::getSurname).setCaption(EnumLabel.SURNAME_LABEL.getLabel());
-        grid.addColumn(CooksEntity::getLastname).setCaption(EnumLabel.LASTNAME_LABEL.getLabel());
+        grid.addColumn(WaitersEntity::getIdwaiter).setCaption(EnumLabel.NUMBER_WAITER_LABEL.getLabel());
+        grid.addColumn(WaitersEntity::getName).setCaption(EnumLabel.NAME_LABEL.getLabel());
+        grid.addColumn(WaitersEntity::getSurname).setCaption(EnumLabel.SURNAME_LABEL.getLabel());
+        grid.addColumn(WaitersEntity::getLastname).setCaption(EnumLabel.LASTNAME_LABEL.getLabel());
         grid.setDataProvider(dataProvider);
-        grid.addItemClickListener(new ItemClickListener<CooksEntity>() {
+        grid.addItemClickListener(new ItemClickListener<WaitersEntity>() {
             @Override
-            public void itemClick(Grid.ItemClick<CooksEntity> event) {
-                cooksEntitySelect = event.getItem();
-                surname.setValue(cooksEntitySelect.getSurname());
-                lastname.setValue(cooksEntitySelect.getLastname());
-                name.setValue(cooksEntitySelect.getName());
+            public void itemClick(Grid.ItemClick<WaitersEntity> event) {
+                waitersEntitySelect = event.getItem();
+                surname.setValue(waitersEntitySelect.getSurname());
+                lastname.setValue(waitersEntitySelect.getLastname());
+                name.setValue(waitersEntitySelect.getName());
 
 
             }
@@ -280,7 +280,7 @@ public class ViewRegisterCook extends VerticalLayout implements View {
     }
 
     private void refreshInformationGrid() {
-        collectionTables = controllerCook.findAllTables();
+        collectionTables = controllerWaiter.findAllTables();
         dataProvider = DataProvider.ofCollection(collectionTables);
         grid.setDataProvider(dataProvider);
 

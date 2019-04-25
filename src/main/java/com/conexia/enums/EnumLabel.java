@@ -8,6 +8,7 @@ public enum EnumLabel {
     CANCELAR_LABEL("Cancelar"),
     NUMBER_TABLE_LABEL("Numero de mesa"),
     NUMBER_COOK_LABEL("Numero de cocinero"),
+    NUMBER_WAITER_LABEL("Numero de mesonero"),
     MAX_COMENSALES_LABEL("Maximo de comensales"),
     NAME_LABEL ("Nombres"),
     SURNAME_LABEL ("Apellido"),

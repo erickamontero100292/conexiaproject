@@ -59,6 +59,17 @@ public class ViewMenu extends VerticalLayout implements View {
                 UniverseNavigator.navigate(ViewRegisterCook.VIEW_NAME);
             }
         });
+
+        MenuBar.MenuItem waiterMaintenance = mainMenu.addItem("Mesoneros", null, null);
+        // Submenu item with a sub-submenu
+        MenuBar.MenuItem menuItemWaiters = waiterMaintenance.addItem("Mantenimiento de mesoneros", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                UniverseNavigator.navigate(ViewRegisterWaiter.VIEW_NAME);
+            }
+        });
+
+
         return mainMenu;
     }
 
