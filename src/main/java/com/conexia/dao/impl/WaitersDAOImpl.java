@@ -51,4 +51,16 @@ public class WaitersDAOImpl implements WaitersDAO {
         entityManager.flush();
 
     }
+
+    @Override
+    public List<Object> consultWaiterByBuy() {
+
+        List  resultList= entityManager.createQuery("select concat( wai.name,' ', wai.surname),  MONTH(inv.invoicedate) , sum(det.importe), inv.idinvoice\n" +
+                "from WaitersEntity wai\n" +
+                "  left join InvoicesEntity inv on wai.idwaiter = inv.idwaiter\n" +
+                "   left join  DetailinvoicesEntity det on inv.idinvoice = det.idinvoice\n" +
+                "group by wai.idwaiter, MONTH(inv.invoicedate)").getResultList();
+
+        return resultList;
+    }
 }

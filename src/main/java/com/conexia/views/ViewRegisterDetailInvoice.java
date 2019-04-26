@@ -26,16 +26,6 @@ public class ViewRegisterDetailInvoice extends VerticalLayout implements View {
     @Autowired
     ControllerDetailInvoice controllerDetailInvoice;
     //fields
-//    private TextField name = new TextField(EnumLabel.NAME_LABEL.getLabel());
-//    private TextField surname = new TextField(EnumLabel.SURNAME_LABEL.getLabel());
-//    private TextField lastname = new TextField(EnumLabel.LASTNAME_LABEL.getLabel());
-
-    //Buttons
-//    private Button btnNew = new Button(EnumLabel.REGISTRAR_LABEL.getLabel());
-//    private Button btnAccept = new Button(EnumLabel.ACEPTAR_LABEL.getLabel());
-//    private Button btnEdit = new Button(EnumLabel.EDITAR_LABEL.getLabel());
-//    private Button btnDelete = new Button(EnumLabel.ELIMINAR_LABEL.getLabel());
-//    private Button btnCancel = new Button(EnumLabel.CANCELAR_LABEL.getLabel());
     private MenuBar menuBar;
     //Layouts
     private VerticalLayout leftLayout = new VerticalLayout();

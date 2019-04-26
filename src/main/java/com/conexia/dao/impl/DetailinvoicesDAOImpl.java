@@ -80,7 +80,7 @@ public class DetailinvoicesDAOImpl implements DetailinvoicesDAO {
     }
 
     @Override
-    public List<DetailinvoicesEntity> consultCustomerByAmount() {
+    public List<Object> consultCustomerByAmount() {
 
         List  resultList=  entityManager.createQuery("select CONCAT(c.name,' ',c.surname), det.importe " +
                 "from InvoicesEntity inv " +

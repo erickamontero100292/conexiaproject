@@ -43,4 +43,10 @@ public class ControllerDetailInvoice {
         entityList = detailinvoicesDAO.loadGroupByIdInvoice( );
         return entityList;
     }
+
+    public List<Object> consultCustomerByAmount( ) {
+        List<Object> entityList = new ArrayList<>();
+        entityList = detailinvoicesDAO.consultCustomerByAmount( );
+        return entityList;
+    }
 }

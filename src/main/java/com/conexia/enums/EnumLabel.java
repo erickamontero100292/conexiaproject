@@ -23,6 +23,8 @@ public enum EnumLabel {
     DATE_LABEL("Fecha"),
     ADD_DETAIL_LABEL("Agregar detalle"),
     PLATE_LABEL("Plato"),
+    CONSULT_1("Consulta 1"),
+    CONSULT_2("Consulta 2"),
     AMOUNT_LABEL("Importe");
 
     EnumLabel(String label) {

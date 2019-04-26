@@ -66,8 +66,8 @@ public class ConexiaApplicationTests {
         testUpdatetDetailinvoices();*/
 //        detailinvoicesDAO.selectByInvoice(2);
 //        detailinvoicesDAO.loadGroupByIdInvoice();
-        detailinvoicesDAO.consultCustomerByAmount();
-
+//        detailinvoicesDAO.consultCustomerByAmount();
+waitersDAO.consultWaiterByBuy();
     }
 
     private void testInsertCook() {

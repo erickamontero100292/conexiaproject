@@ -20,7 +20,7 @@ public interface DetailinvoicesDAO {
 
     public List<DetailinvoicesEntity> loadGroupByIdInvoice();
 
-    public List<DetailinvoicesEntity> consultCustomerByAmount();
+    public List<Object> consultCustomerByAmount();
 
 
 }
