@@ -10,10 +10,17 @@ public interface DetailinvoicesDAO {
 
     public List<DetailinvoicesEntity> selectAll();
 
+    public List<DetailinvoicesEntity> selectByInvoice(Integer idInvoice);
+
     public void insert(DetailinvoicesEntity detailinvoicesEntity);
 
     public void update(DetailinvoicesEntity detailinvoicesEntity);
 
     public void delete(DetailinvoicesEntity detailinvoicesEntity);
+
+    public List<DetailinvoicesEntity> loadGroupByIdInvoice();
+
+    public List<DetailinvoicesEntity> consultCustomerByAmount();
+
 
 }

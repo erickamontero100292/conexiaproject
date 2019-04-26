@@ -1,14 +1,8 @@
 package com.conexia.views;
 
 
-import com.conexia.controller.ControllerCustomer;
-import com.conexia.controller.ControllerInvoice;
-import com.conexia.controller.ControllerTable;
-import com.conexia.controller.ControllerWaiter;
-import com.conexia.entity.CustomersEntity;
-import com.conexia.entity.InvoicesEntity;
-import com.conexia.entity.TablesEntity;
-import com.conexia.entity.WaitersEntity;
+import com.conexia.controller.*;
+import com.conexia.entity.*;
 import com.conexia.enums.EnumLabel;
 import com.conexia.enums.EnumMessages;
 import com.vaadin.data.provider.DataProvider;
@@ -38,19 +32,25 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
     ControllerTable controllerTable;
     @Autowired
     ControllerWaiter controllerWaiter;
+    @Autowired
+    ControllerCook controllerCook;
+
+    @Autowired
+    ControllerDetailInvoice controllerDetailInvoice;
     //fields
-    /*private TextField name = new TextField(EnumLabel.NAME_LABEL.getLabel());
-    private TextField surname = new TextField(EnumLabel.SURNAME_LABEL.getLabel());
-    private TextField lastname = new TextField(EnumLabel.LASTNAME_LABEL.getLabel());
-    private TextField observations = new TextField(EnumLabel.OBSERVATION_LABEL.getLabel());*/
     private ComboBox<String> cmbTable = new ComboBox<>(EnumLabel.NUMBER_TABLE_LABEL.getLabel());
     private ComboBox<String> cmbCustomer = new ComboBox<>(EnumLabel.CUSTOMER_LABEL.getLabel());
     private ComboBox<String> cmbWaiter = new ComboBox<>(EnumLabel.WAITER_LABEL.getLabel());
+    private ComboBox<String> cmbCook = new ComboBox<>(EnumLabel.COOK_LABEL.getLabel());
+    private TextField plate = new TextField(EnumLabel.PLATE_LABEL.getLabel());
+    private TextField amount = new TextField(EnumLabel.AMOUNT_LABEL.getLabel());
+
 
     //Buttons
     private Button btnNew = new Button(EnumLabel.REGISTRAR_LABEL.getLabel());
     private Button btnAccept = new Button(EnumLabel.ACEPTAR_LABEL.getLabel());
     private Button btnEdit = new Button(EnumLabel.EDITAR_LABEL.getLabel());
+    private Button btnAddDetail = new Button(EnumLabel.ADD_DETAIL_LABEL.getLabel());
     private Button btnDelete = new Button(EnumLabel.ELIMINAR_LABEL.getLabel());
     private Button btnCancel = new Button(EnumLabel.CANCELAR_LABEL.getLabel());
     private MenuBar menuBar;
@@ -63,19 +63,21 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
     private HorizontalLayout menuLayout = new HorizontalLayout();
     private HorizontalLayout buttonsPrincipalLayout = new HorizontalLayout();
     private GridLayout fieldsLayout = new GridLayout(2, 5);
+    private GridLayout fieldsLayoutDetail = new GridLayout(2, 5);
     private ListDataProvider<InvoicesEntity> dataProvider;
     private Grid<InvoicesEntity> grid = new Grid<>();
-    List<InvoicesEntity> collectionInvoice;
     private String action;
     private Collection<CustomersEntity> collectionsCustomer;
     private Collection<WaitersEntity> collectionsWaiter;
     private Collection<TablesEntity> collectionsTables;
     private Collection<InvoicesEntity> collectionsInvoice;
+    private Collection<CooksEntity> collectionsCook;
     private Collection<String> arrayTables = new ArrayList<>();
     private Collection<String> arrayWaiter = new ArrayList<>();
     private Collection<String> arrayCustomer = new ArrayList<>();
-    private Label invoiceNumber = new Label();
+    private Collection<String> arrayCook = new ArrayList<>();
     private InvoicesEntity invoiceSelected;
+
 
 
     public ViewRegisterInvoice() {
@@ -95,6 +97,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
         createGrid();
         leftLayout.addComponent(grid);
         showFields(false);
+        showFieldsDetail(false);
         principalPanel.setSizeFull();
         principalPanel.setContent(principalLayout);
         this.addComponents(menuBar, principalPanel);
@@ -103,11 +106,6 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
 
 
     private void setPropertiesField() {
-
-       /* name.setRequiredIndicatorVisible(true);
-        surname.setRequiredIndicatorVisible(true);
-        lastname.setRequiredIndicatorVisible(true);
-        observations.setRequiredIndicatorVisible(true);*/
         cmbWaiter.setRequiredIndicatorVisible(true);
         cmbTable.setRequiredIndicatorVisible(true);
         cmbCustomer.setRequiredIndicatorVisible(true);
@@ -138,6 +136,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent event) {
                 clearFields();
                 showFields(false);
+                showFieldsDetail(false);
 
             }
         });
@@ -151,6 +150,9 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
                 } else if (action.equalsIgnoreCase("delete")) {
                     deleteInvoice();
                 }
+                else if (action.equalsIgnoreCase("addDetail")) {
+                    addDetailInvoice();
+                }
                 clearFields();
                 clearAction();
                 showFields(false);
@@ -163,17 +165,40 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
         rightLayout.addComponent(buttonsSecondaryLayout);
     }
 
+    private void addDetailInvoice() {
+        DetailinvoicesEntity detailinvoicesEntity = new DetailinvoicesEntity();
+        if (!isValidationAllField(EnumMessages.MESSAGE_REQUIRED_FIELD.getMessage())) {
+            try {
+
+                for (CooksEntity cooksEntity : collectionsCook) {
+                    if (cooksEntity.getName().equalsIgnoreCase(cmbCook.getValue())) {
+                        detailinvoicesEntity.setIdcook(cooksEntity.getIdcooks());
+                        break;
+                    }
+                }
+
+                detailinvoicesEntity.setPlate(plate.getValue());
+                detailinvoicesEntity.setImporte(Double.valueOf(amount.getValue()));
+                detailinvoicesEntity.setIdinvoice(invoiceSelected.getIdinvoice());
+
+                controllerDetailInvoice.save(detailinvoicesEntity);
+                refreshInformationGrid();
+                clearFields();
+                showFieldsDetail(false);
+
+            } catch (Exception e) {
+                Notification.show(EnumMessages.MESSAGES_ERROR_SAVE.getMessage(), Notification.Type.ERROR_MESSAGE);
+            }
+        }
+
+
+    }
+
     private void deleteInvoice() {
-//        controllerCustomer.delete(customerEntitySelect);
     }
 
     private void updateFields() {
-/*        customerEntitySelect.setName(name.getValue());
-        customerEntitySelect.setSurname(surname.getValue());
-        customerEntitySelect.setLastname(lastname.getValue());
-        customerEntitySelect.setObservations(observations.getValue());*/
 
-//        controllerCustomer.update(customerEntitySelect);
     }
 
     private void addInvoice() {
@@ -216,13 +241,16 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
 
     private void showFields(boolean value) {
 
-/*        surname.setVisible(value);
-        lastname.setVisible(value);
-        observations.setVisible(value);
-        name.setVisible(value);*/
         cmbWaiter.setVisible(value);
         cmbCustomer.setVisible(value);
         cmbTable.setVisible(value);
+        buttonsSecondaryLayout.setVisible(value);
+    }
+    private void showFieldsDetail(boolean value) {
+
+        cmbCook.setVisible(value);
+        plate.setVisible(value);
+        amount.setVisible(value);
         buttonsSecondaryLayout.setVisible(value);
     }
 
@@ -234,6 +262,13 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
 
         fieldsLayout.addComponents(cmbCustomer, cmbWaiter, cmbTable);
         rightLayout.addComponent(fieldsLayout);
+        buildFieldsDetail();
+    }
+
+    private void buildFieldsDetail() {
+
+        fieldsLayoutDetail.addComponents(cmbCook, plate, amount);
+        rightLayout.addComponent(fieldsLayoutDetail);
     }
 
     private void buildButtons() {
@@ -265,16 +300,22 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
                 }
             }
         });
-        buttonsPrincipalLayout.addComponents(btnNew, btnEdit, btnDelete);
+
+        btnAddDetail.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                if (!isValidationAllField(EnumMessages.SELECT_REGISTER.getMessage())) {
+                    action = "addDetail";
+                    showFieldsDetail(true);
+                }
+            }
+        });
+        buttonsPrincipalLayout.addComponents(btnNew, btnEdit, btnDelete,btnAddDetail);
         rightLayout.addComponent(buttonsPrincipalLayout);
     }
 
     private void clearFields() {
 
-/*        surname.clear();
-        lastname.clear();
-        observations.clear();
-        name.clear();*/
         cmbCustomer.clear();
         cmbTable.clear();
         cmbWaiter.clear();
@@ -283,10 +324,6 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
 
     private void enableFields(boolean value) {
 
-/*        surname.setEnabled(value);
-        lastname.setEnabled(value);
-        observations.setEnabled(value);
-        name.setEnabled(value);*/
         cmbCustomer.setEnabled(value);
         cmbTable.setEnabled(value);
         cmbWaiter.setEnabled(value);
@@ -381,24 +418,50 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
     }
 
     private void loadInformationCombox() {
-        collectionsTables = controllerTable.findAllTables();
-        collectionsWaiter = controllerWaiter.findAllWaiter();
-        collectionsCustomer = controllerCustomer.findAllCustomer();
-        for (TablesEntity tablesEntity : collectionsTables) {
-            arrayTables.add(String.valueOf(tablesEntity.getIdtable()));
-        }
-        cmbTable.setItems(arrayTables);
+        fillCollections();
+        fillComboTable();
+        fillComboCustomer();
+        fillComboWaiter();
+        fillComboCook();
+    }
 
-        for (CustomersEntity customersEntity : collectionsCustomer) {
 
-            arrayCustomer.add(customersEntity.getName());
+    private void fillComboCook() {
+        for (CooksEntity cooksEntity : collectionsCook) {
+
+            arrayCook.add(cooksEntity.getName());
         }
-        cmbCustomer.setItems(arrayCustomer);
+        cmbCook.setItems(arrayCook);
+    }
+
+    private void fillComboWaiter() {
         for (WaitersEntity waitersEntity : collectionsWaiter) {
 
             arrayWaiter.add(waitersEntity.getName());
         }
         cmbWaiter.setItems(arrayWaiter);
+    }
+
+    private void fillComboCustomer() {
+        for (CustomersEntity customersEntity : collectionsCustomer) {
+
+            arrayCustomer.add(customersEntity.getName());
+        }
+        cmbCustomer.setItems(arrayCustomer);
+    }
+
+    private void fillComboTable() {
+        for (TablesEntity tablesEntity : collectionsTables) {
+            arrayTables.add(String.valueOf(tablesEntity.getIdtable()));
+        }
+        cmbTable.setItems(arrayTables);
+    }
+
+    private void fillCollections() {
+        collectionsTables = controllerTable.findAllTables();
+        collectionsWaiter = controllerWaiter.findAllWaiter();
+        collectionsCustomer = controllerCustomer.findAllCustomer();
+        collectionsCook = controllerCook.findAllCook();
     }
 
 

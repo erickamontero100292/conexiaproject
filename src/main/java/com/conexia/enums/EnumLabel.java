@@ -17,9 +17,13 @@ public enum EnumLabel {
     OBSERVATION_LABEL ("Observaciones"),
     LOCATION_LABEL("Locacion"),
     WAITER_LABEL("Mesonero"),
+    COOK_LABEL("Cocinero"),
     CUSTOMER_LABEL("Cliente"),
     INVOICE_LABEL("Factura"),
-    DATE_LABEL("Fecha");
+    DATE_LABEL("Fecha"),
+    ADD_DETAIL_LABEL("Agregar detalle"),
+    PLATE_LABEL("Plato"),
+    AMOUNT_LABEL("Importe");
 
     EnumLabel(String label) {
         this.label = label;

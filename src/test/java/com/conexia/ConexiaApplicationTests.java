@@ -60,10 +60,13 @@ public class ConexiaApplicationTests {
         testSelectAlltInvoices();
         testDeletetInvoices();
         testUpdatetInvoices();*/
-        testInsertMassivetDetailinvoices();
+        /*testInsertMassivetDetailinvoices();
         testSelectAlltDetailinvoices();
         testDeletetDetailinvoices();
-        testUpdatetDetailinvoices();
+        testUpdatetDetailinvoices();*/
+//        detailinvoicesDAO.selectByInvoice(2);
+//        detailinvoicesDAO.loadGroupByIdInvoice();
+        detailinvoicesDAO.consultCustomerByAmount();
 
     }
 

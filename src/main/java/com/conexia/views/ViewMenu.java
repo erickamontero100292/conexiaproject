@@ -87,6 +87,16 @@ public class ViewMenu extends VerticalLayout implements View {
             }
         });
 
+        MenuBar.MenuItem detailMaintenance = mainMenu.addItem("Detalle de Factura", null, null);
+        // Submenu item with a sub-submenu
+        MenuBar.MenuItem menuItemdetailInvoice = detailMaintenance.addItem("Ver detalle", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                UniverseNavigator.navigate(ViewRegisterDetailInvoice.VIEW_NAME);
+            }
+        });
+
+
 
 
         return mainMenu;
