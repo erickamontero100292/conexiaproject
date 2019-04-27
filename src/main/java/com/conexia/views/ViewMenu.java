@@ -33,19 +33,19 @@ public class ViewMenu extends VerticalLayout implements View {
         ExternalResource externalResource = new ExternalResource("VAADIN/img/menu.jpeg");
         Image image = new Image();
         image.setSource(externalResource);
-        //image.setResponsive(true);
         image.setWidth("100%");
         image.setHeight("80%");
         addComponent(image);
         this.setComponentAlignment(mainMenu, Alignment.TOP_CENTER);
     }
+
     public static MenuBar buildMenu() {
         MenuBar mainMenu = new MenuBar();
 
         // A top-level menu item that opens a submenu
         MenuBar.MenuItem tablesMaintenance = mainMenu.addItem("Mesas", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemTables = tablesMaintenance.addItem("Mantenimiento de mesas", null, new MenuBar.Command() {
+        tablesMaintenance.addItem("Mantenimiento de mesas", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterTable.VIEW_NAME);
@@ -53,7 +53,7 @@ public class ViewMenu extends VerticalLayout implements View {
         });
         MenuBar.MenuItem cookMaintenance = mainMenu.addItem("Cocineros", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemCooks = cookMaintenance.addItem("Mantenimiento de cocineros", null, new MenuBar.Command() {
+        cookMaintenance.addItem("Mantenimiento de cocineros", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterCook.VIEW_NAME);
@@ -62,7 +62,7 @@ public class ViewMenu extends VerticalLayout implements View {
 
         MenuBar.MenuItem waiterMaintenance = mainMenu.addItem("Mesoneros", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemWaiters = waiterMaintenance.addItem("Mantenimiento de mesoneros", null, new MenuBar.Command() {
+        waiterMaintenance.addItem("Mantenimiento de mesoneros", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterWaiter.VIEW_NAME);
@@ -71,7 +71,7 @@ public class ViewMenu extends VerticalLayout implements View {
 
         MenuBar.MenuItem customerMaintenance = mainMenu.addItem("Clientes", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemCustomer = customerMaintenance.addItem("Mantenimiento de clientes", null, new MenuBar.Command() {
+        customerMaintenance.addItem("Mantenimiento de clientes", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterCustomer.VIEW_NAME);
@@ -80,7 +80,7 @@ public class ViewMenu extends VerticalLayout implements View {
 
         MenuBar.MenuItem invoiceMaintenance = mainMenu.addItem("Factura", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemInvoice = invoiceMaintenance.addItem("Crear facturas", null, new MenuBar.Command() {
+        invoiceMaintenance.addItem("Crear facturas", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterInvoice.VIEW_NAME);
@@ -89,7 +89,7 @@ public class ViewMenu extends VerticalLayout implements View {
 
         MenuBar.MenuItem detailMaintenance = mainMenu.addItem("Detalle de Factura", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemDetailInvoice = detailMaintenance.addItem("Ver detalle", null, new MenuBar.Command() {
+        detailMaintenance.addItem("Ver detalle", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewRegisterDetailInvoice.VIEW_NAME);
@@ -97,7 +97,7 @@ public class ViewMenu extends VerticalLayout implements View {
         });
         MenuBar.MenuItem report = mainMenu.addItem("Reporte", null, null);
         // Submenu item with a sub-submenu
-        MenuBar.MenuItem menuItemReport = report.addItem("Ver reportes", null, new MenuBar.Command() {
+        report.addItem("Ver reportes", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 UniverseNavigator.navigate(ViewReport.VIEW_NAME);
@@ -105,12 +105,8 @@ public class ViewMenu extends VerticalLayout implements View {
         });
 
 
-
         return mainMenu;
     }
-
-
-
 
 
 }

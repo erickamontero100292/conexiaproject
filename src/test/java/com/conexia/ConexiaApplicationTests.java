@@ -36,38 +36,13 @@ public class ConexiaApplicationTests {
 
     @Test
     public void contextLoads() {
-//            testInsertCook();
         /*testInsertMassiveCook();
-        testSelectAllCook();
-        testDeleteCook();*/
+        testInsertMassivetWaiters();
+        testInsertMassivetTables();
+        testInsertMassivetCustomers();
+        testInsertMassivetInvoices();
+        testInsertMassivetDetailinvoices();*/
 
-        /*testInsertMassivetWaiters();
-        testSelectAlltWaiters();
-        testDeletetWaiters();
-        testUpdatetWaiters();*/
-
-   /*   testInsertMassivetTables();
-        testSelectAlltTables();
-        testDeletetTables();
-        testUpdatetTables();*/
-
-        /*testInsertMassivetCustomers();
-        testSelectAlltCustomers();
-        testDeletetCustomers();
-        testUpdatetCustomers();*/
-
-        /*testInsertMassivetInvoices();
-        testSelectAlltInvoices();
-        testDeletetInvoices();
-        testUpdatetInvoices();*/
-        /*testInsertMassivetDetailinvoices();
-        testSelectAlltDetailinvoices();
-        testDeletetDetailinvoices();
-        testUpdatetDetailinvoices();*/
-//        detailinvoicesDAO.selectByInvoice(2);
-//        detailinvoicesDAO.loadGroupByIdInvoice();
-//        detailinvoicesDAO.consultCustomerByAmount();
-            waitersDAO.consultWaiterByInvoice();
     }
 
     private void testInsertCook() {
@@ -256,8 +231,8 @@ public class ConexiaApplicationTests {
         for (int i = 0; i < 10; i++) {
             int n = (int) (Math.random() * ((5 - 3) + 1)) + 3;
             DetailinvoicesEntity detailinvoicesEntity = new DetailinvoicesEntity();
-            InvoicesEntity invoicesEntity = invoicesDAO.selecyById( n);
-            CooksEntity cooksEntity = cooksDAO.selecyById( 4);
+            InvoicesEntity invoicesEntity = invoicesDAO.selecyById(n);
+            CooksEntity cooksEntity = cooksDAO.selecyById(4);
             detailinvoicesEntity.setIdinvoice(invoicesEntity.getIdinvoice());
             detailinvoicesEntity.setIdcook(cooksEntity.getIdcooks());
             detailinvoicesEntity.setPlate(plates[n]);

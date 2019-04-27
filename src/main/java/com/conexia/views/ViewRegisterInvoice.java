@@ -49,9 +49,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
     //Buttons
     private Button btnNew = new Button(EnumLabel.REGISTRAR_LABEL.getLabel());
     private Button btnAccept = new Button(EnumLabel.ACEPTAR_LABEL.getLabel());
-    private Button btnEdit = new Button(EnumLabel.EDITAR_LABEL.getLabel());
     private Button btnAddDetail = new Button(EnumLabel.ADD_DETAIL_LABEL.getLabel());
-    private Button btnDelete = new Button(EnumLabel.ELIMINAR_LABEL.getLabel());
     private Button btnCancel = new Button(EnumLabel.CANCELAR_LABEL.getLabel());
     private MenuBar menuBar;
     //Layouts
@@ -145,10 +143,6 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent event) {
                 if (action.equalsIgnoreCase("new")) {
                     addInvoice();
-                } else if (action.equalsIgnoreCase("edit")) {
-                    updateFields();
-                } else if (action.equalsIgnoreCase("delete")) {
-                    deleteInvoice();
                 }
                 else if (action.equalsIgnoreCase("addDetail")) {
                     addDetailInvoice();
@@ -194,12 +188,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
 
     }
 
-    private void deleteInvoice() {
-    }
 
-    private void updateFields() {
-
-    }
 
     private void addInvoice() {
         InvoicesEntity invoicesEntity = new InvoicesEntity();
@@ -281,25 +270,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
                 action = "new";
             }
         });
-        btnEdit.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                if (!isValidationAllField(EnumMessages.SELECT_REGISTER.getMessage())) {
-                    action = "edit";
-                    showFields(true);
-                }
-            }
-        });
-        btnDelete.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                if (!isValidationAllField(EnumMessages.SELECT_REGISTER.getMessage())) {
-                    action = "delete";
-                    showFields(true);
-                    enableFields(false);
-                }
-            }
-        });
+
 
         btnAddDetail.addClickListener(new Button.ClickListener() {
             @Override
@@ -310,7 +281,7 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
                 }
             }
         });
-        buttonsPrincipalLayout.addComponents(btnNew, btnEdit, btnDelete,btnAddDetail);
+        buttonsPrincipalLayout.addComponents(btnNew,btnAddDetail);
         rightLayout.addComponent(buttonsPrincipalLayout);
     }
 
@@ -329,17 +300,6 @@ public class ViewRegisterInvoice extends VerticalLayout implements View {
         cmbWaiter.setEnabled(value);
 
 
-    }
-
-    private void processDeleteUser() {
-
-        try {
-            Notification.show(EnumMessages.MESSAGE_SUCESS_DELETE.getMessage(), Notification.Type.HUMANIZED_MESSAGE);
-            clearFields();
-            enableFields(true);
-        } catch (Exception e) {
-            Notification.show(EnumMessages.MESSAGES_ERROR_SAVE.getMessage(), Notification.Type.ERROR_MESSAGE);
-        }
     }
 
     private boolean isValidationAllField(String message) {
