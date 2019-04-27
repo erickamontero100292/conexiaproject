@@ -5,7 +5,6 @@ import com.conexia.entity.DetailinvoicesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,7 +14,7 @@ public class ControllerDetailInvoice {
     DetailinvoicesDAOImpl detailinvoicesDAO;
 
     public List<DetailinvoicesEntity> findAllDetailInvoce() {
-        List<DetailinvoicesEntity> entityList = new ArrayList<>();
+        List<DetailinvoicesEntity> entityList;
         entityList = detailinvoicesDAO.selectAll();
         return entityList;
     }
@@ -33,19 +32,19 @@ public class ControllerDetailInvoice {
     }
 
     public List<DetailinvoicesEntity> selectByInvoice(Integer idInvoice) {
-        List<DetailinvoicesEntity> entityList = new ArrayList<>();
+        List<DetailinvoicesEntity> entityList;
         entityList = detailinvoicesDAO.selectByInvoice( idInvoice);
         return entityList;
     }
 
     public List<DetailinvoicesEntity> loadGroupByIdInvoice( ) {
-        List<DetailinvoicesEntity> entityList = new ArrayList<>();
+        List<DetailinvoicesEntity> entityList;
         entityList = detailinvoicesDAO.loadGroupByIdInvoice( );
         return entityList;
     }
 
     public List<Object> consultCustomerByAmount( ) {
-        List<Object> entityList = new ArrayList<>();
+        List<Object> entityList;
         entityList = detailinvoicesDAO.consultCustomerByAmount( );
         return entityList;
     }
