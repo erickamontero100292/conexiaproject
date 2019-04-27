@@ -16,6 +16,6 @@ public interface WaitersDAO {
 
     public void delete(WaitersEntity waitersEntity);
 
-    public List<Object> consultWaiterByBuy();
+    public List<Object> consultWaiterByInvoice();
 
 }

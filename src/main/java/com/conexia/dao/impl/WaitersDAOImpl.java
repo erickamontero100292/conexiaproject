@@ -53,7 +53,7 @@ public class WaitersDAOImpl implements WaitersDAO {
     }
 
     @Override
-    public List<Object> consultWaiterByBuy() {
+    public List<Object> consultWaiterByInvoice() {
 
         List  resultList= entityManager.createQuery("select concat( wai.name,' ', wai.surname),  MONTH(inv.invoicedate) , sum(det.importe), inv.idinvoice\n" +
                 "from WaitersEntity wai\n" +

@@ -31,4 +31,10 @@ public class ControllerWaiter {
     public void delete(WaitersEntity waitersEntity) {
         waitersDAO.delete(waitersEntity);
     }
+
+    public List<Object> consultCustomerByInvoice( ) {
+        List<Object> entityList;
+        entityList = waitersDAO.consultWaiterByInvoice( );
+        return entityList;
+    }
 }
