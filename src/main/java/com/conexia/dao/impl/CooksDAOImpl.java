@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,14 +17,13 @@ public class CooksDAOImpl implements CooksDAO {
 
     @Override
     public CooksEntity selecyById(Integer idCook) {
-        CooksEntity cooksEntity = entityManager.find(CooksEntity.class, idCook);
-        return cooksEntity;
+        return entityManager.find(CooksEntity.class, idCook);
     }
 
     @Override
     public List<CooksEntity> selectAll() {
         Query query = entityManager.createQuery("from CooksEntity");
-        List<CooksEntity> cooksEntities = new ArrayList<>();
+        List<CooksEntity> cooksEntities;
         cooksEntities = query.getResultList();
         return cooksEntities;
     }

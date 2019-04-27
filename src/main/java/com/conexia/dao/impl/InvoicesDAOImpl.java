@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,14 +17,13 @@ public class InvoicesDAOImpl implements InvoicesDAO {
 
     @Override
     public InvoicesEntity selecyById(Integer idInvoice) {
-        InvoicesEntity invoicesEntity = entityManager.find(InvoicesEntity.class, idInvoice);
-        return invoicesEntity;
+        return entityManager.find(InvoicesEntity.class, idInvoice);
     }
 
     @Override
     public List<InvoicesEntity> selectAll() {
         Query query = entityManager.createQuery("from InvoicesEntity");
-        List<InvoicesEntity> waitersEntities = new ArrayList<>();
+        List<InvoicesEntity> waitersEntities;
         waitersEntities = query.getResultList();
         return waitersEntities;
     }

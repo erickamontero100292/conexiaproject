@@ -5,7 +5,6 @@ import com.conexia.entity.WaitersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,7 +14,7 @@ public class ControllerWaiter {
     WaitersDAOImpl waitersDAO;
 
     public List<WaitersEntity> findAllWaiter() {
-        List<WaitersEntity> entityList = new ArrayList<>();
+        List<WaitersEntity> entityList ;
         entityList = waitersDAO.selectAll();
         return entityList;
     }

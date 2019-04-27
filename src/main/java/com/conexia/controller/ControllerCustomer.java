@@ -5,7 +5,6 @@ import com.conexia.entity.CustomersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,7 +14,7 @@ public class ControllerCustomer {
     CustomersDAOImpl customersDAO;
 
     public List<CustomersEntity> findAllCustomer() {
-        List<CustomersEntity> entityList = new ArrayList<>();
+        List<CustomersEntity> entityList;
         entityList = customersDAO.selectAll();
         return entityList;
     }

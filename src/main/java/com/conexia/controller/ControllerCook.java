@@ -1,12 +1,10 @@
 package com.conexia.controller;
 
 import com.conexia.dao.impl.CooksDAOImpl;
-import com.conexia.dao.impl.TablesDAOImpl;
 import com.conexia.entity.CooksEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,7 +14,7 @@ public class ControllerCook {
     CooksDAOImpl cooksDAO;
 
     public List<CooksEntity> findAllCook() {
-        List<CooksEntity> entityList = new ArrayList<>();
+        List<CooksEntity> entityList;
         entityList = cooksDAO.selectAll();
         return entityList;
     }

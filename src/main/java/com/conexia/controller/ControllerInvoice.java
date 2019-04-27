@@ -5,7 +5,6 @@ import com.conexia.entity.InvoicesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,7 +14,7 @@ public class ControllerInvoice {
     InvoicesDAOImpl invoicesDAO;
 
             public List<InvoicesEntity> findAllInvoce() {
-        List<InvoicesEntity> entityList = new ArrayList<>();
+        List<InvoicesEntity> entityList;
         entityList = invoicesDAO.selectAll();
         return entityList;
     }

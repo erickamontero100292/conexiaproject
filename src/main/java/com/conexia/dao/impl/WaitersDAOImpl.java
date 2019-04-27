@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,14 +17,13 @@ public class WaitersDAOImpl implements WaitersDAO {
 
     @Override
     public WaitersEntity selecyById(Integer idWaiter) {
-        WaitersEntity waitersEntity = entityManager.find(WaitersEntity.class, idWaiter);
-        return waitersEntity;
+        return entityManager.find(WaitersEntity.class, idWaiter);
     }
 
     @Override
     public List<WaitersEntity> selectAll() {
         Query query = entityManager.createQuery("from WaitersEntity");
-        List<WaitersEntity> waitersEntities = new ArrayList<>();
+        List<WaitersEntity> waitersEntities;
         waitersEntities = query.getResultList();
         return waitersEntities;
     }
@@ -55,12 +53,12 @@ public class WaitersDAOImpl implements WaitersDAO {
     @Override
     public List<Object> consultWaiterByInvoice() {
 
-        List  resultList= entityManager.createQuery("select concat( wai.name,' ', wai.surname),  MONTH(inv.invoicedate) , sum(det.importe), inv.idinvoice\n" +
+        return entityManager.createQuery("select concat( wai.name,' ', wai.surname),  MONTH(inv.invoicedate) , sum(det.importe), inv.idinvoice\n" +
                 "from WaitersEntity wai\n" +
                 "  left join InvoicesEntity inv on wai.idwaiter = inv.idwaiter\n" +
                 "   left join  DetailinvoicesEntity det on inv.idinvoice = det.idinvoice\n" +
                 "group by wai.idwaiter, MONTH(inv.invoicedate)").getResultList();
 
-        return resultList;
+
     }
 }
